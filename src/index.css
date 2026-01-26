@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: 'master-of-custom';
+    src: url('../public/fonts/master-of-custom.ttf') format('truetype');
+}
