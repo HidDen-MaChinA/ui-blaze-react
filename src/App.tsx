@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NotFound from './not_found';
 import { LandingPage } from './pages/LandingPage';
+import "./i18n";
 
 function App() {
   return (
