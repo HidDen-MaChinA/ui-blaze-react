@@ -2,8 +2,14 @@ import { BaseDynamicFormFeatureLayer, DynamiqueInputType } from "../components/F
 
 export default function FormsPage(){
     return (
-        <div>
-            <BaseDynamicFormFeatureLayer formStructure={[{label: "name", type: DynamiqueInputType.text}]} />
-        </div>
-    )
+      <div>
+        <BaseDynamicFormFeatureLayer
+          formStructure={[
+            { label: "name", type: DynamiqueInputType._text },
+            { label: "username", type: DynamiqueInputType._text },
+            { label: "age", type: DynamiqueInputType._number }
+        ]}
+        />
+      </div>
+    );
 }

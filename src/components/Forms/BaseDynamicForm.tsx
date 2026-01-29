@@ -1,7 +1,8 @@
+import React from "react";
 import { useForm, type UseFormRegister } from "react-hook-form"
 
 export enum DynamiqueInputType {
-    text, number
+    _text, _number, _password
 }
 
 export type DynamiqueInputBase = {
@@ -9,24 +10,27 @@ export type DynamiqueInputBase = {
     type : DynamiqueInputType
 }
 
-type IUseForm = {
-   name: string 
-   username: string
+export type CustomInput<T> = (register: UseFormRegister<{[args:string]: T}>, label: string, key: string)=>React.ReactNode;
+
+export interface ICustomInputs {
+    _text: CustomInput<string>    
+    _number: CustomInput<number>
+    _password: CustomInput<string>
 }
 
 export type BaseDynamicFormFeatureLayerPropsType = {
     formStructure: DynamiqueInputBase[]
-
+    customInputs?: ICustomInputs
 }
 
 function formatFormStructureToUseFormInterface (formStructure: DynamiqueInputBase[]){
     let toReturn : {[args:string]: any} = {}
     for (let i= 0; i < formStructure.length; i++) {
        switch(formStructure[i].type){
-        case DynamiqueInputType.text:
+        case DynamiqueInputType._text || DynamiqueInputType._password:
            toReturn[formStructure[i].label] = "";
            continue;
-        case DynamiqueInputType.number:
+        case DynamiqueInputType._number:
            toReturn[formStructure[i].label] = 0;
            continue;
        }
@@ -35,16 +39,21 @@ function formatFormStructureToUseFormInterface (formStructure: DynamiqueInputBas
 }
 
 export function BaseDynamicFormFeatureLayer(props: BaseDynamicFormFeatureLayerPropsType){
-    const {formStructure} = props;
+    const {formStructure, customInputs} = props;
     const {register, handleSubmit} = useForm(formatFormStructureToUseFormInterface(formStructure));
-    const functionRefSwitch = [displayTextInput, displayNumberInput]
+    const functionRefObject : ICustomInputs = customInputs || {
+        _number: displayNumberInput,
+        _password: displayPasswordInput,
+        _text: displayTextInput
+    }
+    const functionRefArray = [functionRefObject._text, functionRefObject._number, functionRefObject._password];
    return (
     <form onSubmit={handleSubmit((data)=>{
         console.log(data)
     })}>
         {
             formStructure && formStructure.map((inputBase, index)=>{
-                return functionRefSwitch[inputBase.type](register, inputBase.label,`dynamique-form-input-type-${inputBase.type}-index-${index}` )
+               return functionRefArray[inputBase.type](register, inputBase.label,`dynamique-form-input-type-${inputBase.type}-index-${index}`);
             })
         }
        <button>submit</button>
@@ -64,4 +73,9 @@ function displayNumberInput(register: UseFormRegister<{[args:string]: number}>, 
     )
 }
 
+function displayPasswordInput(register: UseFormRegister<{[args:string]: string}>, label: string, key: string){
+    return (
+        <input type="text" {...register(label)} key={key}/>
+    )
+}
 
