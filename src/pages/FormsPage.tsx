@@ -7,7 +7,8 @@ export default function FormsPage(){
           formStructure={[
             { label: "name", type: DynamiqueInputType._text },
             { label: "username", type: DynamiqueInputType._text },
-            { label: "age", type: DynamiqueInputType._number }
+            { label: "age", type: DynamiqueInputType._number },
+            { label: "image", type: DynamiqueInputType._file }
         ]}
         />
       </div>
