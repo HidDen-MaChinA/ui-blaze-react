@@ -2,5 +2,5 @@
 
 @font-face {
     font-family: 'master-of-custom';
-    src: url('../public/fonts/master-of-custom.ttf') format('truetype');
+    src: url('/fonts/master-of-custom.ttf') format('truetype');
 }

@@ -8,6 +8,7 @@ import H6 from "../components/Typography/H6";
 import { Text } from "../components/Typography/Text";
 import { useTranslation } from "react-i18next";
 import { SideBar } from "../components/Layout/SideBar/SideBar";
+import { BlazeButton } from "../components/Buttons/BlazeButtons/BlazeButton";
 
 export function LandingPage() {
     const {t, i18n} = useTranslation("landing_page");
@@ -39,6 +40,10 @@ export function LandingPage() {
                     <input type="radio" onChange={onChange} name="language" value={"fr"}/>
                     <label htmlFor="">Français</label>
                 </div>
+            </div>
+            <div>
+               <H2>Buttons</H2> 
+               <BlazeButton variant>Click me</BlazeButton>
             </div>
         </SideBar>
     </div>
