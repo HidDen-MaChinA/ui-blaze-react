@@ -1,12 +1,9 @@
-import type React from "react"
 import Logo from "../Logo"
 import { SideBarLink } from "./SideBarLink"
+import type { SideBarType } from "./SideBarType"
 
-type SideBarPropsType = {
-    children?: React.ReactNode
-}
 
-export function SideBar(props: SideBarPropsType){
+export const SideBar : SideBarType = (props) => {
     return (
         <div className="flex flex-row h-[100vh] w-full">
             <div className="w-[150px] border-r-gray-200 boorder-r border-r-2 shadow-xl">
