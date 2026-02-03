@@ -9,6 +9,7 @@ import { Text } from "../components/Typography/Text";
 import { useTranslation } from "react-i18next";
 import { SideBar } from "../components/Layout/SideBar/SideBar";
 import { BlazeButton } from "../components/Buttons/BlazeButtons/BlazeButton";
+import { BaseBareChart } from "../components/Charts/BarChart/BaseBarChart";
 
 export function LandingPage() {
     const {t, i18n} = useTranslation("landing_page");
@@ -44,6 +45,14 @@ export function LandingPage() {
             <div>
                <H2>Buttons</H2> 
                <BlazeButton variant>Click me</BlazeButton>
+               <H2>Charts</H2>
+               <BaseBareChart data={{
+                labels: ["a", "b", "c", "d", "e"],
+                datasets: [{
+                    label: "one",
+                    data: [1,2,3,4,5]
+                }]
+               }}></BaseBareChart>
             </div>
         </SideBar>
     </div>
