@@ -6,7 +6,8 @@ import type { SideBarType } from "./SideBarType"
 export const SideBar : SideBarType = (props) => {
     return (
         <div className="flex flex-row h-[100vh] w-full">
-            <div className="w-[150px] border-r-gray-200 boorder-r border-r-2 shadow-xl">
+            <div className="w-[150px]"></div>
+            <div className="w-[150px] border-r-gray-200 h-full fixed boorder-r border-r-2 shadow-xl">
                 <div className="flex flex-col h-full justify-between">
                     <div className="w-full h-[150px] overflow-hidden">
                         <div className="w-full h-full bg-red-700">
