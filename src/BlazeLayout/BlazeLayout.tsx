@@ -1,5 +1,5 @@
 import type React from "react";
-import type { PageComponent } from "../BlazeRouter/BlazeRoutesConfiguration"
+import type { PageComponent } from "../@types/TBlazeRoutesConfiguration"
 import type { SideBarType } from "../components/Layout/SideBar/SideBarType";
 
 export type BlazeLayoutPropsType = {
