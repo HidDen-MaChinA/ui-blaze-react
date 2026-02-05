@@ -46,6 +46,7 @@ export function LandingPage() {
             <div>
                <H2>Buttons</H2> 
                <BlazeButton variant>Click me</BlazeButton>
+               <BlazeButton>Click me</BlazeButton>
                <H2>Charts</H2>
                <H3>Bar</H3>
                <BaseBarChart data={{
