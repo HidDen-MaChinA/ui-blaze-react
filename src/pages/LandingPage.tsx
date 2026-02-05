@@ -19,53 +19,75 @@ export function LandingPage() {
     }
 
    return (
-    <div>
-        <SideBar>
-           <H1>heading 1</H1> 
-            <H2>heading 2</H2>
-            <H3>heading 3</H3>
-            <H4>heading 4</H4>
-            <H5>heading 5</H5>
-            <H6>heading 6</H6>
-            <Text>simple text</Text>
-            <Text>{t("greeting")}</Text>
-            <div className="flex flex-col [&>div]:flex [&>div]:gap-3">
-                <div>
-                    <input type="radio" onChange={onChange} name="language" value={"en"} />
-                    <label htmlFor="">English</label>
-                </div>
-                <div>
-                    <input type="radio" onChange={onChange} name="language" value={"mg"}/>
-                    <label htmlFor="">Malagasy</label>
-                </div>
-                <div>
-                    <input type="radio" onChange={onChange} name="language" value={"fr"}/>
-                    <label htmlFor="">Français</label>
-                </div>
-            </div>
-            <div>
-               <H2>Buttons</H2> 
-               <BlazeButton variant>Click me</BlazeButton>
-               <BlazeButton>Click me</BlazeButton>
-               <H2>Charts</H2>
-               <H3>Bar</H3>
-               <BaseBarChart data={{
-                labels: ["a", "b", "c", "d", "e"],
-                datasets: [{
-                    label: "one",
-                    data: [1,2,3,4,5]
-                }]
-               }}></BaseBarChart>
-               <H3>Line</H3>
-               <BaseLineChart data={{
-                labels: ["a", "b", "c", "d", "e"],
-                datasets: [{
-                    label: "one",
-                    data: [1,2,3,4,5]
-                }]
-               }}></BaseLineChart>
-            </div>
-        </SideBar>
-    </div>
-   ) 
+     <div>
+       <H1>heading 1</H1>
+       <H2>heading 2</H2>
+       <H3>heading 3</H3>
+       <H4>heading 4</H4>
+       <H5>heading 5</H5>
+       <H6>heading 6</H6>
+       <Text>simple text</Text>
+       <H2>I18n translation</H2>
+       <Text>{t("greeting")}</Text>
+       <div className="flex flex-col [&>div]:flex [&>div]:gap-3">
+         <div>
+           <input
+             type="radio"
+             onChange={onChange}
+             name="language"
+             value={"en"}
+           />
+           <label htmlFor="">English</label>
+         </div>
+         <div>
+           <input
+             type="radio"
+             onChange={onChange}
+             name="language"
+             value={"mg"}
+           />
+           <label htmlFor="">Malagasy</label>
+         </div>
+         <div>
+           <input
+             type="radio"
+             onChange={onChange}
+             name="language"
+             value={"fr"}
+           />
+           <label htmlFor="">Français</label>
+         </div>
+       </div>
+       <div>
+         <H2>Buttons</H2>
+         <BlazeButton variant>Click me</BlazeButton>
+         <BlazeButton>Click me</BlazeButton>
+         <H2>Charts</H2>
+         <H3>Bar</H3>
+         <BaseBarChart
+           data={{
+             labels: ["a", "b", "c", "d", "e"],
+             datasets: [
+               {
+                 label: "one",
+                 data: [1, 2, 3, 4, 5],
+               },
+             ],
+           }}
+         ></BaseBarChart>
+         <H3>Line</H3>
+         <BaseLineChart
+           data={{
+             labels: ["a", "b", "c", "d", "e"],
+             datasets: [
+               {
+                 label: "one",
+                 data: [1, 2, 3, 4, 5],
+               },
+             ],
+           }}
+         ></BaseLineChart>
+       </div>
+     </div>
+   ); 
 }
