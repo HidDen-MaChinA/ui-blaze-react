@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import { useMemo, type ChangeEvent } from "react";
 import H1 from "../components/Typography/H1";
 import H2 from "../components/Typography/H2";
 import H3 from "../components/Typography/H3";
@@ -11,11 +11,20 @@ import { SideBar } from "../components/Layout/SideBar/SideBar";
 import { BlazeButton } from "../components/Buttons/BlazeButtons/BlazeButton";
 import { BaseBarChart } from "../components/Charts/BarCharts/BaseBarChart";
 import { BaseLineChart } from "../components/Charts/LineCharts/BaseLineChart";
+import { UserApiCallsHandler } from "../BlazeApiCalls/ApiCallsHandlers/UserApiCallsHandler";
 
 export function LandingPage() {
     const {t, i18n} = useTranslation("landing_page");
     const onChange = (e: ChangeEvent<HTMLInputElement>)=>{
         i18n.changeLanguage(e.target.value);
+    }
+    const userApiCallHandler = useMemo(()=>new UserApiCallsHandler, [])
+    const apiCall = ()=>{
+     userApiCallHandler.post({
+      name: "",
+      password: "",
+      username: ""
+     }, "").then(console.log); 
     }
 
    return (
@@ -62,6 +71,8 @@ export function LandingPage() {
          <H2>Buttons</H2>
          <BlazeButton variant>Click me</BlazeButton>
          <BlazeButton>Click me</BlazeButton>
+         <H2>Api Call</H2>
+         <BlazeButton onClick={apiCall}>Use Api Call</BlazeButton>
          <H2>Charts</H2>
          <H3>Bar</H3>
          <BaseBarChart
