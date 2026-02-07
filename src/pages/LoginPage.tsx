@@ -1,14 +1,15 @@
-import type { BlazeBaseButton } from "../BlazeButtons/BlazeBaseButtonType";
-import { BlazeButton } from "../BlazeButtons/BlazeButtons/BlazeButton";
+import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
+import { BlazeBaseButton} from "../BlazeButtons/BlazeButtons/BlazeBaseButton";
 import { BlazeBaseDynamicForm } from "../BlazeForm/BlazeBaseDynamicForm";
 import { DynamiqueInputType } from "../BlazeForm/DynamiqueInputBase";
+import { AppButton } from "../components/Button";
 import Logo from "../components/Layout/Logo";
 import H4 from "../components/Typography/H4";
 
 export function LoginPage(){
     return (
-        <div className="w-full h-[100vh] bg-red-800 flex justify-center items-center">
-            <div className="shadow-xl border bg-white border-gray-100 rounded-2xl px-3 py-5 w-[350px]">
+        <div className="w-full h-[100vh] flex justify-center items-center">
+            <div className="shadow-xl border bg-white border-red-200 rounded-2xl px-3 py-5 w-[350px]">
                 <div className="flex flex-col items-center">
                     <Logo />
                       <span
@@ -31,7 +32,8 @@ export function LoginPage(){
                     ]} 
                     customButton={
                         {
-                            Component: Button,
+                            Component: AppButton,
+                            variant:true,
                             text: "Login"
                         }
                     }
@@ -41,8 +43,3 @@ export function LoginPage(){
     )
 }
 
-const Button : BlazeBaseButton = (props)=>{
-    return(
-        <button {...{...props}} className="px-2 bg-white border border-red-500 text-red-500 rounded-xl py-1 w-full" />
-    )
-}

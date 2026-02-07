@@ -2,8 +2,8 @@ import { useForm, type FieldValues, type SubmitErrorHandler, type SubmitHandler,
 import { DynamiqueInputType, type DynamiqueInputBase } from "./DynamiqueInputBase";
 import type { ICustomInputs } from "./ICustomInputs";
 import { CustomInputs } from "./CustomInputs";
-import type { BlazeBaseButton } from "../BlazeButtons/BlazeBaseButtonType";
 import { blazeCentralConfiguration } from "../blazeLayoutConfiguration";
+import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
 
 
 export type BlazeBaseDynamicFormPropsType = {
@@ -14,7 +14,7 @@ export type BlazeBaseDynamicFormPropsType = {
 }
 
 export type BlazeBaseDynamicFormCustomButton = {
-  Component: BlazeBaseButton 
+  Component: BlazeBaseButtonType
   text?: string
   variant?: boolean
 }

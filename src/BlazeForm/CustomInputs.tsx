@@ -24,7 +24,7 @@ function firstCharToUpperCase(arg:string){
 
 function displayTextInput(register: UseFormRegister<{[args:string]: string}>, label: string, key: string, required?: boolean){
     return (
-        <div className="py-2" key={key}>
+        <div className="pt-2" key={key}>
             <H6>{firstCharToUpperCase(label)}</H6>
             <input className="border w-full border-gray-700 px-1 py-1 rounded-md" type="text" {...register(toLowerCase(label), {required: required})} />
         </div>
@@ -33,7 +33,7 @@ function displayTextInput(register: UseFormRegister<{[args:string]: string}>, la
 
 function displayNumberInput(register: UseFormRegister<{[args:string]: number}>, label: string, key: string, required?: boolean){
     return (
-        <div className="py-2" key={key}>
+        <div className="pt-2" key={key}>
             <H6>{firstCharToUpperCase(label)}</H6>
             <input className="w-full border border-gray-700 px-1 py-1 rounded-md" type="number" {...register(toLowerCase(label), {required: required})} />
         </div>
@@ -42,7 +42,7 @@ function displayNumberInput(register: UseFormRegister<{[args:string]: number}>, 
 
 function displayPasswordInput(register: UseFormRegister<{[args:string]: string}>, label: string, key: string, required?: boolean){
     return (
-        <div className="py-2" key={key}>
+        <div className="pt-2" key={key}>
             <H6>{firstCharToUpperCase(label)}</H6>
             <input className="w-full border border-gray-700 px-1 py-1 rounded-md" type="password" {...register(toLowerCase(label), {required: required})} />
         </div>
@@ -52,7 +52,7 @@ function displayPasswordInput(register: UseFormRegister<{[args:string]: string}>
 function displayFileInput(register: UseFormRegister<{[args:string]: File|null}>, label: string, key: string, required?: boolean){
     const id = v4(); 
     return (
-        <div className="py-2" key={key}>
+        <div className="pt-2" key={key}>
             <H6>{firstCharToUpperCase(label)}</H6>
             <label htmlFor={id} className="flex justify-center border border-gray-700 px-1 py-1 rounded-md">
                 <Text>Import a file</Text>
@@ -64,7 +64,7 @@ function displayFileInput(register: UseFormRegister<{[args:string]: File|null}>,
 
 function displayDateInput(register: UseFormRegister<{[args:string]: string|null}>, label: string, key: string, required?: boolean){
     return (
-        <div className="py-2" key={key}>
+        <div className="pt-2" key={key}>
             <H6>{firstCharToUpperCase(label)}</H6>
             <input className="w-full border border-gray-700 px-1 py-1 rounded-md" type="date" {...register(toLowerCase(label), {required: required})} />
         </div>

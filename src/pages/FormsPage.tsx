@@ -1,6 +1,7 @@
+import { BlazeBaseButton } from "../BlazeButtons/BlazeButtons/BlazeBaseButton";
 import { BlazeBaseDynamicForm } from "../BlazeForm/BlazeBaseDynamicForm";
 import { DynamiqueInputType } from "../BlazeForm/DynamiqueInputBase";
-import { BlazeButton } from "../BlazeButtons/BlazeButtons/BlazeButton";
+import { AppButton } from "../components/Button";
 
 export default function FormsPage(){
     return (
@@ -8,7 +9,7 @@ export default function FormsPage(){
         <div className="p-3">
           <BlazeBaseDynamicForm
             customButton={{
-              Component: BlazeButton
+              Component: AppButton
             }}
             onSubmit={console.log}
             formStructure={[

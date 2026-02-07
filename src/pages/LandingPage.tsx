@@ -7,10 +7,11 @@ import H5 from "../components/Typography/H5";
 import H6 from "../components/Typography/H6";
 import { Text } from "../components/Typography/Text";
 import { useTranslation } from "react-i18next";
-import { BlazeButton } from "../BlazeButtons/BlazeButtons/BlazeButton";
 import { UserApiCallsHandler } from "../BlazeApiCalls/ApiCallsHandlers/UserApiCallsHandler";
 import { BaseBarChart } from "../BlazeCharts/BarCharts/BaseBarChart";
 import { BaseLineChart } from "../BlazeCharts/LineCharts/BaseLineChart";
+import { AppButton } from "../components/Button";
+import { BlazeBaseButton } from "../BlazeButtons/BlazeButtons/BlazeBaseButton";
 
 export function LandingPage() {
     const {t, i18n} = useTranslation("landing_page");
@@ -68,10 +69,10 @@ export function LandingPage() {
        </div>
        <div>
          <H2>Buttons</H2>
-         <BlazeButton variant>Click me</BlazeButton>
-         <BlazeButton>Click me</BlazeButton>
+         <BlazeBaseButton variant>Click me</BlazeBaseButton>
+         <BlazeBaseButton>Click me</BlazeBaseButton>
          <H2>Api Call</H2>
-         <BlazeButton onClick={apiCall}>Use Api Call</BlazeButton>
+         <BlazeBaseButton onClick={apiCall}>Use Api Call</BlazeBaseButton>
          <H2>Charts</H2>
          <H3>Bar</H3>
          <BaseBarChart
