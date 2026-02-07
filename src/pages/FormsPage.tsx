@@ -1,9 +1,10 @@
-import { BaseDynamicFormFeatureLayer, DynamiqueInputType } from "../components/Forms/BaseDynamicForm";
+import { BlazeBaseDynamicForm } from "../BlazeForm/BlazeBaseDynamicForm";
+import { DynamiqueInputType } from "../BlazeForm/DynamiqueInputBase";
 
 export default function FormsPage(){
     return (
       <div>
-        <BaseDynamicFormFeatureLayer
+        <BlazeBaseDynamicForm
           formStructure={[
             { label: "name", type: DynamiqueInputType._text },
             { label: "username", type: DynamiqueInputType._text },
