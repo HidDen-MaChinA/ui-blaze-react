@@ -1,4 +1,4 @@
-import type { BaseButton } from "../BaseButtonType";
+import type { BlazeBaseButton as BaseButton } from "../BlazeBaseButtonType";
 
 
 export const BlazeButton : BaseButton = (props) => {

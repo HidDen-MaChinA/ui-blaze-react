@@ -19,5 +19,5 @@ export const BlazeObjectRoutes : TBlazeRouteType[] = [
     {
         path: "*",
         ComponentPage: NotFound
-    }    
+    }
 ]

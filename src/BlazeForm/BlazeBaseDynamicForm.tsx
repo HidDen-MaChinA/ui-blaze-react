@@ -2,13 +2,20 @@ import { useForm, type FieldValues, type SubmitErrorHandler, type SubmitHandler,
 import { DynamiqueInputType, type DynamiqueInputBase } from "./DynamiqueInputBase";
 import type { ICustomInputs } from "./ICustomInputs";
 import { CustomInputs } from "./CustomInputs";
+import type { BlazeBaseButton } from "../components/Buttons/BlazeBaseButtonType";
 
 
 export type BlazeBaseDynamicFormPropsType = {
     formStructure: DynamiqueInputBase[]
     customInputs?: ICustomInputs
+    customButton?: BlazeBaseDynamicFormCustomButton
     onSubmit?: SubmitHandler<FieldValues>
     onInvalid?: SubmitErrorHandler<FieldValues> 
+}
+
+export type BlazeBaseDynamicFormCustomButton = {
+  Component: BlazeBaseButton 
+  variant?: boolean
 }
 
 function formatFormStructureToUseFormInterface (formStructure: DynamiqueInputBase[]){
@@ -36,7 +43,7 @@ function formatFormStructureToUseFormInterface (formStructure: DynamiqueInputBas
 }
 
 export function BlazeBaseDynamicForm(props: BlazeBaseDynamicFormPropsType){
-    const {formStructure, customInputs, onSubmit, onInvalid} = props;
+    const {customButton,formStructure, customInputs, onSubmit, onInvalid} = props;
     console.log(formatFormStructureToUseFormInterface(formStructure));
     const {register, handleSubmit} = useForm(formatFormStructureToUseFormInterface(formStructure));
     const functionRefObject : ICustomInputs = customInputs || new CustomInputs();
@@ -59,21 +66,26 @@ export function BlazeBaseDynamicForm(props: BlazeBaseDynamicFormPropsType){
         alert("no hanlder implemented")
     }
    return (
-     <form
-       onSubmit={handleSubmit(onSubmit || defaultSubmitHandler , onInvalid)}
-     >
+     <form onSubmit={handleSubmit(onSubmit || defaultSubmitHandler, onInvalid)}>
        {formStructure &&
          formStructure.map((inputBase, index) => {
            if (functionRefArray[inputBase.type]) {
              return functionRefArray[inputBase.type]!(
                register,
                inputBase.label,
-               `dynamique-form-input-type-${inputBase.type}-index-${index}`
+               `dynamique-form-input-type-${inputBase.type}-index-${index}`,
+               inputBase.required
              );
            }
-           return <div>no custom component of type "{inputBase.type}" defined</div>;
+           return (
+             <div key={`choice-no-defined${inputBase.label + index}`}>no custom component of type "{inputBase.type}" defined</div>
+           );
          })}
-       <button>submit</button>
+       {customButton? (
+         <customButton.Component variant={customButton.variant}>Submit</customButton.Component>
+       ) : (
+         <button>submit</button>
+       )}
      </form>
    ); 
 }

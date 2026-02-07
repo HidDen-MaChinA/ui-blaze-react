@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 import type React from "react";
 
-export type BaseButton = (
+export type BlazeBaseButton = (
   props: React.DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
