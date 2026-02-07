@@ -7,7 +7,6 @@ import H5 from "../components/Typography/H5";
 import H6 from "../components/Typography/H6";
 import { Text } from "../components/Typography/Text";
 import { useTranslation } from "react-i18next";
-import { SideBar } from "../components/Layout/SideBar/SideBar";
 import { BlazeButton } from "../components/Buttons/BlazeButtons/BlazeButton";
 import { BaseBarChart } from "../components/Charts/BarCharts/BaseBarChart";
 import { BaseLineChart } from "../components/Charts/LineCharts/BaseLineChart";

@@ -4,7 +4,7 @@ import type { Component } from "react"
 
 type SideBarPropsType = {
     SideBarLinkComponent?: SideBarLinkType
-    LogoComponent?: Component
+    LogoComponent?: ()=>React.ReactNode
 }
 
 export type SideBarType = (props: SideBarPropsType)=>React.ReactNode

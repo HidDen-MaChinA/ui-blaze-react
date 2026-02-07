@@ -8,13 +8,15 @@ import { BlazeObjectRoutes } from "../blazeRouteConfiguration.ts";
 import type { TBlazeRouteType } from "../@types/TBlazeRoutesConfiguration.ts";
 
 const SideBar = blazeCentralConfiguration.blazeLayout.Sidebar;
+const SideBarLink = blazeCentralConfiguration.blazeLayout.SidebarLink;
+const Logo = blazeCentralConfiguration.blazeLayout.LogoComponent;
 
 function mapObjectRouteToReactRouterRoute(arg: TBlazeRouteType) {
   if (arg.Layout) {
     return (
       <Route
         path={arg.path}
-        element={<arg.Layout Component={arg.ComponentPage} Sidebar={SideBar} />}
+        element={<arg.Layout LogoComponent={Logo} SideBarLink={SideBarLink}  Component={arg.ComponentPage} Sidebar={SideBar} />}
       />
     );
   }

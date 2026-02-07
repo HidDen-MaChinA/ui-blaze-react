@@ -1,23 +1,37 @@
 import type React from "react";
-import type { PageComponent } from "../@types/TBlazeRoutesConfiguration"
+import type { PageComponent } from "../@types/TBlazeRoutesConfiguration";
 import type { SideBarType } from "../components/Layout/SideBar/SideBarType";
+import type { SideBarLinkType } from "../components/Layout/SideBar/SideBarLinkType";
+import { SideBar as BlazeSideBar } from "../components/Layout/SideBar/SideBar";
 
 export type BlazeLayoutPropsType = {
-    Component: PageComponent
-    Sidebar: SideBarType
-}
-export type BlazeLayoutType = (props: BlazeLayoutPropsType)=>React.ReactNode
+  Component: PageComponent;
+  Sidebar?: SideBarType;
+  LogoComponent?: () => React.ReactNode;
+  SideBarLink?: SideBarLinkType;
+};
+export type BlazeLayoutType = (props: BlazeLayoutPropsType) => React.ReactNode;
 
-export const BlazeLayout : BlazeLayoutType = (props) => {
-    const {Component, Sidebar} = props;
-    return (
-        <div className="flex flex-row h-[100vh] w-full">
-            <>
-                <Sidebar />
-            </>
-            <div className="flex-1">
-                <Component />
-            </div>
-        </div>
-    )
-}
+export const BlazeLayout: BlazeLayoutType = (props) => {
+  const { Component, Sidebar, LogoComponent, SideBarLink } = props;
+  return (
+    <div className="flex flex-row h-[100vh] w-full">
+      <>
+        {Sidebar ? (
+          <Sidebar
+            LogoComponent={LogoComponent}
+            SideBarLinkComponent={SideBarLink}
+          />
+        ) : (
+          <BlazeSideBar
+            LogoComponent={LogoComponent}
+            SideBarLinkComponent={SideBarLink}
+          />
+        )}
+      </>
+      <div className="flex-1">
+        <Component />
+      </div>
+    </div>
+  );
+};
