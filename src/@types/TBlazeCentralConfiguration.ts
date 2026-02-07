@@ -1,5 +1,7 @@
-import type { TBlazeLayoutObjectConfigurationType } from "./TBlazeLayoutConfiguration"
+import type { TBlazeFormsConfiguration } from "./TBlazeFormsConfiguration"
+import type { TBlazeLayoutObjectConfiguration } from "./TBlazeLayoutConfiguration"
 
 export type TBlazeCentralConfiguration= {
-    blazeLayout: TBlazeLayoutObjectConfigurationType
+    blazeLayout: TBlazeLayoutObjectConfiguration
+    blazeForms?: TBlazeFormsConfiguration
 }

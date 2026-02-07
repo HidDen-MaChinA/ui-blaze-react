@@ -7,10 +7,10 @@ import H5 from "../components/Typography/H5";
 import H6 from "../components/Typography/H6";
 import { Text } from "../components/Typography/Text";
 import { useTranslation } from "react-i18next";
-import { BlazeButton } from "../components/Buttons/BlazeButtons/BlazeButton";
-import { BaseBarChart } from "../components/Charts/BarCharts/BaseBarChart";
-import { BaseLineChart } from "../components/Charts/LineCharts/BaseLineChart";
+import { BlazeButton } from "../BlazeButtons/BlazeButtons/BlazeButton";
 import { UserApiCallsHandler } from "../BlazeApiCalls/ApiCallsHandlers/UserApiCallsHandler";
+import { BaseBarChart } from "../BlazeCharts/BarCharts/BaseBarChart";
+import { BaseLineChart } from "../BlazeCharts/LineCharts/BaseLineChart";
 
 export function LandingPage() {
     const {t, i18n} = useTranslation("landing_page");

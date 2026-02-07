@@ -8,5 +8,5 @@ export const blazeCentralConfiguration : TBlazeCentralConfiguration= {
         Sidebar: SideBar,
         SidebarLink: SideBarLink,
         LogoComponent: Logo
-    }
+    },
 }
