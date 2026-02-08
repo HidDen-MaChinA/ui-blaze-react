@@ -3,9 +3,11 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router";
-import { blazeCentralConfiguration } from "../blazeCentralConfiguration.ts";
-import { BlazeObjectRoutes } from "../blazeRouteConfiguration.ts";
 import type { TBlazeRouteType } from "../@types/TBlazeRoutesConfiguration.ts";
+import { BlazeAuthentificationLayer } from "../BlazeAuthentification/BlazeAuthentificationLayer.tsx";
+import { Loading } from "../components/Loading.tsx";
+import blazeCentralConfiguration from "../blazeCentralConfiguration.ts";
+import BlazeObjectRoutes from "../blazeRouteConfiguration.ts";
 
 const SideBar = blazeCentralConfiguration.blazeLayout.Sidebar;
 const SideBarLink = blazeCentralConfiguration.blazeLayout.SidebarLink;
@@ -16,11 +18,24 @@ function mapObjectRouteToReactRouterRoute(arg: TBlazeRouteType) {
     return (
       <Route
         path={arg.path}
-        element={<arg.Layout LogoComponent={Logo} SideBarLink={SideBarLink}  Component={arg.ComponentPage} Sidebar={SideBar} />}
+        element={
+          <BlazeAuthentificationLayer protection={arg.protection} Loading={Loading}>
+            <arg.Layout
+              LogoComponent={Logo}
+              SideBarLink={SideBarLink}
+              Component={arg.ComponentPage}
+              Sidebar={SideBar}
+            />
+          </BlazeAuthentificationLayer>
+        }
       />
     );
   }
-  return <Route path={arg.path} Component={arg.ComponentPage} />;
+  return (
+    <BlazeAuthentificationLayer Loading={Loading} protection={arg.protection}>
+      <Route path={arg.path} Component={arg.ComponentPage} />
+    </BlazeAuthentificationLayer>
+  );
 }
 
 const blazeRoutes = createRoutesFromElements(

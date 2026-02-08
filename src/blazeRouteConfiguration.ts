@@ -1,12 +1,11 @@
 import { BlazeLayout } from "./BlazeLayout/BlazeLayout";
-import type { TBlazeRouteType } from "./@types/TBlazeRoutesConfiguration";
 import NotFound from "./not_found";
 import { LandingPage } from "./pages/LandingPage";
 import FormsPage from "./pages/FormsPage";
 import { LoginPage } from "./pages/LoginPage";
+import createObjectRoutes from "./BlazeRouter/utils/createObjectRoutes";
 
-
-export const BlazeObjectRoutes : TBlazeRouteType[] = [
+const BlazeObjectRoutes = createObjectRoutes([
     {
         path: "/",
         ComponentPage: LandingPage,
@@ -25,4 +24,6 @@ export const BlazeObjectRoutes : TBlazeRouteType[] = [
         path: "*",
         ComponentPage: NotFound
     }
-]
+])
+
+export default BlazeObjectRoutes

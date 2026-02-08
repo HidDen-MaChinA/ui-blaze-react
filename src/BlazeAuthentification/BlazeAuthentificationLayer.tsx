@@ -1,10 +1,12 @@
 import type React from "react";
-import { blazeCentralConfiguration } from "../blazeCentralConfiguration";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuthStore } from "../stores/BlazeStores/authStore";
+import { recursiveArrayFunctionExec } from "./utils/recursiveArrayFunctionExec";
+import blazeCentralConfiguration from "../blazeCentralConfiguration";
 
 export type BlazeAuthentificationLayerPropsType<T> = {
   children?: React.ReactNode;
+  protection?: boolean
   middlewares?: BlazeMiddleware<T>[];
   Loading: () => React.ReactNode;
 };
@@ -14,7 +16,10 @@ export type BlazeMiddleware<ResType> = (res: ResType) => ResType;
 export function BlazeAuthentificationLayer<T>(
   props: BlazeAuthentificationLayerPropsType<T>
 ) {
-  const { children, middlewares, Loading } = props;
+  const { protection, children, middlewares, Loading } = props;
+  if(!protection){
+    return children
+  }
   const {setUserInformations, userInformations} = useAuthStore(_=>_);
   useEffect(()=>{
     authenticate<T>().then((res)=>{
@@ -38,10 +43,3 @@ function authenticate<T>() {
   ).then(res=>res as T).catch(()=>null) ;
 }
 
-function recursiveArrayFunctionExec<T>(refArr: BlazeMiddleware<T>[],arg:T,index: number){
-    if(refArr.length === index ){
-        return arg;
-    }
-    return recursiveArrayFunctionExec(refArr,refArr[index](arg),index+1)
-
-}
