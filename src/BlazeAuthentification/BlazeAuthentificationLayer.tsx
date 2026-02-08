@@ -1,6 +1,7 @@
 import type React from "react";
 import { blazeCentralConfiguration } from "../blazeCentralConfiguration";
 import { useEffect, useState } from "react";
+import { useAuthStore } from "../stores/BlazeStores/authStore";
 
 export type BlazeAuthentificationLayerPropsType<T> = {
   children?: React.ReactNode;
@@ -14,18 +15,18 @@ export function BlazeAuthentificationLayer<T>(
   props: BlazeAuthentificationLayerPropsType<T>
 ) {
   const { children, middlewares, Loading } = props;
-  const [authState, setAuthState] = useState<T|null>(null);
+  const {setUserInformations, userInformations} = useAuthStore(_=>_);
   useEffect(()=>{
     authenticate<T>().then((res)=>{
         if(middlewares){
             const valueAfterMiddleWares = recursiveArrayFunctionExec<T>(middlewares, res, 0);
-            setAuthState(valueAfterMiddleWares);
+            setUserInformations(valueAfterMiddleWares);
         }
     })
   }, [])
 
 
-  return authState ? children : <Loading />;
+  return userInformations ? children : <Loading />;
 }
 
 async function authenticate<T>() {
