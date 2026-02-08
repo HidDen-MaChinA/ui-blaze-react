@@ -18,9 +18,12 @@ export function BlazeAuthentificationLayer<T>(
   const {setUserInformations, userInformations} = useAuthStore(_=>_);
   useEffect(()=>{
     authenticate<T>().then((res)=>{
-        if(middlewares){
-            const valueAfterMiddleWares = recursiveArrayFunctionExec<T>(middlewares, res, 0);
-            setUserInformations(valueAfterMiddleWares);
+        if(res){
+            if(middlewares){
+                const valueAfterMiddleWares = recursiveArrayFunctionExec<T>(middlewares, res, 0);
+                setUserInformations(valueAfterMiddleWares);
+            }
+            setUserInformations(res);
         }
     })
   }, [])
@@ -29,10 +32,10 @@ export function BlazeAuthentificationLayer<T>(
   return userInformations ? children : <Loading />;
 }
 
-async function authenticate<T>() {
-  return await blazeCentralConfiguration.blazeAuthProvider.authentificationProvider.whoami(
+function authenticate<T>() {
+  return blazeCentralConfiguration.blazeAuthProvider.authentificationProvider.whoami(
     blazeCentralConfiguration.blazeAuthProvider.authentificationPath
-  ) as T;
+  ).then(res=>res as T).catch(()=>null) ;
 }
 
 function recursiveArrayFunctionExec<T>(refArr: BlazeMiddleware<T>[],arg:T,index: number){
