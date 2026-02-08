@@ -1,9 +1,9 @@
-import { useForm, type FieldValues, type SubmitErrorHandler, type SubmitHandler, type UseFormRegister } from "react-hook-form"
+import { useForm, type FieldValues, type SubmitErrorHandler, type SubmitHandler } from "react-hook-form"
 import { DynamiqueInputType, type DynamiqueInputBase } from "./DynamiqueInputBase";
 import type { ICustomInputs } from "./ICustomInputs";
 import { CustomInputs } from "./CustomInputs";
-import { blazeCentralConfiguration } from "../blazeCentralConfiguration";
 import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
+import blazeCentralConfiguration from "../blazeCentralConfiguration";
 
 
 export type BlazeBaseDynamicFormPropsType = {

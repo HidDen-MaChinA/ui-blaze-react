@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAuthStore } from "../stores/BlazeStores/authStore";
 import { recursiveArrayFunctionExec } from "./utils/recursiveArrayFunctionExec";
 import blazeCentralConfiguration from "../blazeCentralConfiguration";
+import { useNavigate } from "react-router";
 
 export type BlazeAuthentificationLayerPropsType<T> = {
   children?: React.ReactNode;
@@ -11,7 +12,7 @@ export type BlazeAuthentificationLayerPropsType<T> = {
   Loading: () => React.ReactNode;
 };
 
-export type BlazeMiddleware<ResType> = (res: ResType) => ResType;
+export type BlazeMiddleware<ResType> = (res: ResType|null) => ResType|null;
 
 export function BlazeAuthentificationLayer<T>(
   props: BlazeAuthentificationLayerPropsType<T>
@@ -20,17 +21,22 @@ export function BlazeAuthentificationLayer<T>(
   if(!protection){
     return children
   }
+  const navigate = useNavigate();
   const {setUserInformations, userInformations} = useAuthStore(_=>_);
   useEffect(()=>{
     authenticate<T>().then((res)=>{
-        if(res){
-            if(middlewares){
-                const valueAfterMiddleWares = recursiveArrayFunctionExec<T>(middlewares, res, 0);
-                setUserInformations(valueAfterMiddleWares);
-            }
-            setUserInformations(res);
+        if(middlewares){
+            const valueAfterMiddleWares = recursiveArrayFunctionExec<T>(middlewares, res, 0);
+            return valueAfterMiddleWares;
         }
-    })
+        return res;
+    }).then((result)=>{
+      if(!result){
+        navigate("/forbidden")
+        return result;
+      }
+      return result;
+    }).then(setUserInformations)
   }, [])
 
 

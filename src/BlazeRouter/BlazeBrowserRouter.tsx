@@ -32,9 +32,17 @@ function mapObjectRouteToReactRouterRoute(arg: TBlazeRouteType) {
     );
   }
   return (
-    <BlazeAuthentificationLayer Loading={Loading} protection={arg.protection}>
-      <Route path={arg.path} Component={arg.ComponentPage} />
-    </BlazeAuthentificationLayer>
+    <Route
+      path={arg.path}
+      element={
+        <BlazeAuthentificationLayer
+          Loading={Loading}
+          protection={arg.protection}
+        >
+          <arg.ComponentPage />
+        </BlazeAuthentificationLayer>
+      }
+    />
   );
 }
 

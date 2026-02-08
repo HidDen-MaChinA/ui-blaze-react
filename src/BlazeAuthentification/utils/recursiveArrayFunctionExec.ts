@@ -1,6 +1,6 @@
 import type { BlazeMiddleware } from "../BlazeAuthentificationLayer";
 
-export function recursiveArrayFunctionExec<T>(refArr: BlazeMiddleware<T>[],arg:T,index: number){
+export function recursiveArrayFunctionExec<T>(refArr: BlazeMiddleware<T>[],arg:T|null,index: number){
     if(refArr.length === index ){
         return arg;
     }

@@ -4,6 +4,7 @@ import { LandingPage } from "./pages/LandingPage";
 import FormsPage from "./pages/FormsPage";
 import { LoginPage } from "./pages/LoginPage";
 import createObjectRoutes from "./BlazeRouter/utils/createObjectRoutes";
+import { ForbiddenPage } from "./forbidden_page";
 
 const BlazeObjectRoutes = createObjectRoutes([
     {
@@ -14,7 +15,8 @@ const BlazeObjectRoutes = createObjectRoutes([
     {
         path: "/forms",
         ComponentPage: FormsPage,
-        Layout: BlazeLayout
+        Layout: BlazeLayout,
+        protection: true
     },
     {
         path: "/login",
@@ -23,6 +25,10 @@ const BlazeObjectRoutes = createObjectRoutes([
     {
         path: "*",
         ComponentPage: NotFound
+    },
+    {
+        path: "/forbidden",
+        ComponentPage: ForbiddenPage
     }
 ])
 
