@@ -2,7 +2,7 @@ import { useForm, type FieldValues, type SubmitErrorHandler, type SubmitHandler,
 import { DynamiqueInputType, type DynamiqueInputBase } from "./DynamiqueInputBase";
 import type { ICustomInputs } from "./ICustomInputs";
 import { CustomInputs } from "./CustomInputs";
-import { blazeCentralConfiguration } from "../blazeLayoutConfiguration";
+import { blazeCentralConfiguration } from "../blazeCentralConfiguration";
 import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
 
 
