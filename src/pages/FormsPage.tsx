@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 import { BlazeBaseButton } from "../BlazeButtons/BlazeButtons/BlazeBaseButton";
 import { BlazeBaseDynamicForm } from "../BlazeForm/BlazeBaseDynamicForm";
 import { DynamiqueInputType } from "../BlazeForm/DynamiqueInputBase";
 import { AppButton } from "../components/Button";
+import { useAuthStore } from "../stores/BlazeStores/authStore";
 
 export default function FormsPage(){
+    const user = useAuthStore(_=>_.userInformations);
+    useEffect(()=>{
+      console.log(user);
+    }, [])
     return (
       <div>
         <div className="p-3">

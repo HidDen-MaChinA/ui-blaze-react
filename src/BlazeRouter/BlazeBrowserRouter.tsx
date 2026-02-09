@@ -13,13 +13,13 @@ const SideBar = blazeCentralConfiguration.blazeLayout.Sidebar;
 const SideBarLink = blazeCentralConfiguration.blazeLayout.SidebarLink;
 const Logo = blazeCentralConfiguration.blazeLayout.LogoComponent;
 
-function mapObjectRouteToReactRouterRoute(arg: TBlazeRouteType) {
+function mapObjectRouteToReactRouterRoute<T>(arg: TBlazeRouteType<T>) {
   if (arg.Layout) {
     return (
       <Route
         path={arg.path}
         element={
-          <BlazeAuthentificationLayer protection={arg.protection} Loading={Loading}>
+          <BlazeAuthentificationLayer middlewares={arg.middlewares} protection={arg.protection} Loading={Loading}>
             <arg.Layout
               LogoComponent={Logo}
               SideBarLink={SideBarLink}
@@ -36,6 +36,7 @@ function mapObjectRouteToReactRouterRoute(arg: TBlazeRouteType) {
       path={arg.path}
       element={
         <BlazeAuthentificationLayer
+          middlewares={arg.middlewares}
           Loading={Loading}
           protection={arg.protection}
         >

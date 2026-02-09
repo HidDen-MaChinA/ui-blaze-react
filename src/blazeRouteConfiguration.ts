@@ -5,8 +5,9 @@ import FormsPage from "./pages/FormsPage";
 import { LoginPage } from "./pages/LoginPage";
 import createObjectRoutes from "./BlazeRouter/utils/createObjectRoutes";
 import { ForbiddenPage } from "./forbidden_page";
+import { fakeUserAuthMiddleware } from "./middlewares/fakeUserAuthMiddleware";
 
-const BlazeObjectRoutes = createObjectRoutes([
+const BlazeObjectRoutes = createObjectRoutes<{something: string}>([
     {
         path: "/",
         ComponentPage: LandingPage,
@@ -16,7 +17,8 @@ const BlazeObjectRoutes = createObjectRoutes([
         path: "/forms",
         ComponentPage: FormsPage,
         Layout: BlazeLayout,
-        protection: true
+        protection: true,
+        middlewares: [fakeUserAuthMiddleware]
     },
     {
         path: "/login",
