@@ -8,11 +8,11 @@ import { useNavigate } from "react-router";
 export type BlazeAuthentificationLayerPropsType<T> = {
   children?: React.ReactNode;
   protection?: boolean
-  middlewares?: BlazeMiddleware<T>[];
+  middlewares?: BlazeMiddleware[];
   Loading: () => React.ReactNode;
 };
 
-export type BlazeMiddleware<ResType> = (res: ResType|null) => ResType|null;
+export type BlazeMiddleware = (res: unknown|null) => unknown|null;
 
 export function BlazeAuthentificationLayer<T>(
   props: BlazeAuthentificationLayerPropsType<T>

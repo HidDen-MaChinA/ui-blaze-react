@@ -13,7 +13,7 @@ const SideBar = blazeCentralConfiguration.blazeLayout.Sidebar;
 const SideBarLink = blazeCentralConfiguration.blazeLayout.SidebarLink;
 const Logo = blazeCentralConfiguration.blazeLayout.LogoComponent;
 
-function mapObjectRouteToReactRouterRoute<T>(arg: TBlazeRouteType<T>) {
+function mapObjectRouteToReactRouterRoute(arg: TBlazeRouteType) {
   if (arg.Layout) {
     return (
       <Route
