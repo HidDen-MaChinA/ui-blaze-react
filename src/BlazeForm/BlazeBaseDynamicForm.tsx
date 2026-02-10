@@ -5,9 +5,17 @@ import { CustomInputs } from "./CustomInputs";
 import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
 import blazeCentralConfiguration from "../blazeCentralConfiguration";
 
+export type DynamiqueListValueInputBase = {
+  label:string
+  type: DynamiqueInputType
+  required?:boolean
+  values?:string[] | number[]
+}
+
+type FormStructureType = DynamiqueInputBase & DynamiqueListValueInputBase
 
 export type BlazeBaseDynamicFormPropsType = {
-    formStructure: DynamiqueInputBase[]
+    formStructure: FormStructureType []
     customButton?: BlazeBaseDynamicFormCustomButton
     onSubmit?: SubmitHandler<FieldValues>
     onInvalid?: SubmitErrorHandler<FieldValues> 
@@ -39,6 +47,9 @@ function formatFormStructureToUseFormInterface (formStructure: DynamiqueInputBas
         case DynamiqueInputType._date:
            toReturn[formStructure[i].label] = null;
            continue;
+        case DynamiqueInputType._select:
+           toReturn[formStructure[i].label] = null;
+           continue;
        }
     }
     return toReturn;
@@ -63,6 +74,7 @@ export function BlazeBaseDynamicForm(props: BlazeBaseDynamicFormPropsType){
       functionRefObject._password,
       functionRefObject._file,
       functionRefObject._date,
+      functionRefObject._select
     ];
     const defaultSubmitHandler = ()=>{
         alert("no hanlder implemented")
@@ -77,7 +89,8 @@ export function BlazeBaseDynamicForm(props: BlazeBaseDynamicFormPropsType){
                  register,
                  inputBase.label,
                  `dynamique-form-input-type-${inputBase.type}-index-${index}`,
-                 inputBase.required
+                 inputBase.required,
+                 inputBase.values
                );
              }
              return (

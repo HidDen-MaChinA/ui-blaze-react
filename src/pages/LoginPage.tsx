@@ -1,3 +1,4 @@
+import { BlazeBaseAuthentificationProvider } from "../BlazeAuthentification/BlazeAuthentificationProvider";
 import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
 import { BlazeBaseButton} from "../BlazeButtons/BlazeButtons/BlazeBaseButton";
 import { BlazeBaseDynamicForm } from "../BlazeForm/BlazeBaseDynamicForm";
@@ -7,6 +8,7 @@ import Logo from "../components/Layout/Logo";
 import H4 from "../components/Typography/H4";
 
 export function LoginPage(){
+    const authProvider = new BlazeBaseAuthentificationProvider();
     return (
         <div className="w-full h-[100vh] flex justify-center items-center">
             <div className="shadow-xl border bg-white border-red-200 rounded-2xl px-3 py-5 w-[350px]">
@@ -20,9 +22,10 @@ export function LoginPage(){
                       </span>
                 </div>
                 <BlazeBaseDynamicForm
+                    onSubmit={(value)=>authProvider.login("/api/auth/login", value)}
                     formStructure={[
                         {
-                            label: "email",
+                            label: "username",
                             type: DynamiqueInputType._text
                         },
                         {
