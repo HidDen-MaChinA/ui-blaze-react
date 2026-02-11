@@ -19,5 +19,5 @@ export class BlazeBaseAuthentificationProvider <T> implements IBlazeAuthentifica
 }
 
 function parseAuthPath(arg: string){
-    return arg.charAt(0) === "//" ? arg : "//" + arg
+    return arg.charAt(0).match("/") ? arg : "/" + arg
 }

@@ -18,7 +18,7 @@ const BlazeObjectRoutes = createObjectRoutes([
         ComponentPage: FormsPage,
         Layout: BlazeLayout,
         protection: true,
-        middlewares: [fakeUserAuthMiddleware]
+        middlewares: []
     },
     {
         path: "/login",

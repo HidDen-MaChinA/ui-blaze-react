@@ -12,7 +12,7 @@ const blazeCentralConfiguration : TBlazeCentralConfiguration= {
     },
     // T type argument is the return type of whoami function that give type to all the middleware argument
     blazeAuthProvider: {
-        authentificationPath: "/user/whoami",
+        authentificationPath: "/api/auth/whoami",
         authentificationProvider: new BlazeBaseAuthentificationProvider<unknown>
     }
 }

@@ -4,6 +4,7 @@ const baseUrl = import.meta.env.VITE_API_URL;
 
 export const baseClient = axios.create({
     baseURL: baseUrl,
+    withCredentials: true
 })
 
 type QueryParamType = {
@@ -41,9 +42,9 @@ export class AxiosBlazeApi<T> implements IBlazeApiBase<T> {
   delete<K>(identifier: string, path: string): Promise<K | null> {
     return baseClient
       .delete(
-        path.charAt(path.length - 1) === "\\"
+        path.charAt(path.length - 1) === "/"
           ? path + identifier
-          : path + "\\" + identifier
+          : path + "/" + identifier
       )
       .then((res) => res.data)
       .catch(() => null);
