@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { BlazeBaseAuthentificationProvider } from "../BlazeAuthentification/BlazeAuthentificationProvider";
 import type { BlazeBaseButtonType } from "../BlazeButtons/BlazeBaseButtonType";
 import { BlazeBaseButton} from "../BlazeButtons/BlazeButtons/BlazeBaseButton";
@@ -9,6 +10,7 @@ import H4 from "../components/Typography/H4";
 
 export function LoginPage(){
     const authProvider = new BlazeBaseAuthentificationProvider();
+    const navigate = useNavigate();
     return (
         <div className="w-full h-[100vh] flex justify-center items-center">
             <div className="shadow-xl border bg-white border-red-200 rounded-2xl px-3 py-5 w-[350px]">
@@ -22,7 +24,9 @@ export function LoginPage(){
                       </span>
                 </div>
                 <BlazeBaseDynamicForm
-                    onSubmit={(value)=>authProvider.login("/api/auth/login", value)}
+                    onSubmit={(value)=>authProvider.login("/api/auth/login", value).then(()=>{
+                       navigate("/forms"); 
+                    })}
                     formStructure={[
                         {
                             label: "username",

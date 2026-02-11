@@ -11,37 +11,39 @@ type QueryParamType = {
     [arg:string]:string
 }
 
-export interface IBlazeApiBase <T> {
-    get<K>(path: string, queryParam?: QueryParamType) : Promise<K|null>;
-    post<K>(obj:T, path: string) : Promise<K|null>;
-    update<K>(obj:T,path: string) : Promise<K|null>;
-    delete<K>(identifier:string,path: string) : Promise<K|null>;
+export interface IBlazeApiBase {
+    get<K>(path: string, queryParam?: QueryParamType) : Promise<K>;
+    post<K>(obj:Object, path: string) : Promise<K>;
+    update<K>(obj:Object,path: string) : Promise<K>;
+    delete<K>(identifier:string,path: string) : Promise<K>;
 }
 
-export class AxiosBlazeApi<T> implements IBlazeApiBase<T> {
-  get<K>(path: string, queryParam?: QueryParamType): Promise<K | null> {
+export class AxiosBlazeApi implements IBlazeApiBase {
+  constructor(private ressource: string){ }
+
+  get<K>(path: string, queryParam?: QueryParamType): Promise<K> {
     return baseClient
-      .get(path, {
+      .get(this.ressource + path, {
         params: queryParam,
       })
       .then((res) => res.data)
       .catch(() => null);
   }
-  post<K>(obj: T, path: string): Promise<K | null> {
+  post<K>(obj: Object , path: string): Promise<K> {
     return baseClient
-      .post(path,obj)
+      .post(this.ressource + path,obj)
       .then((res) => res.data)
       .catch(() => null);
   }
-  update<K>(obj: T, path: string): Promise<K | null> {
+  update<K>(obj: Object, path: string): Promise<K> {
     return baseClient
-      .post(path,obj)
+      .post(this.ressource + path,obj)
       .then((res) => res.data)
       .catch(() => null);
   }
-  delete<K>(identifier: string, path: string): Promise<K | null> {
+  delete<K>(identifier: string, path: string): Promise<K> {
     return baseClient
-      .delete(
+      .delete(this.ressource + 
         path.charAt(path.length - 1) === "/"
           ? path + identifier
           : path + "/" + identifier
