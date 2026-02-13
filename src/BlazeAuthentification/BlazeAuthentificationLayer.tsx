@@ -5,7 +5,7 @@ import { recursiveArrayFunctionExec } from "./utils/recursiveArrayFunctionExec";
 import blazeCentralConfiguration from "../blazeCentralConfiguration";
 import { useNavigate } from "react-router";
 
-export type BlazeAuthentificationLayerPropsType<T> = {
+export type BlazeAuthentificationLayerPropsType = {
   children?: React.ReactNode;
   protection?: boolean
   middlewares?: BlazeMiddleware[];
@@ -14,8 +14,8 @@ export type BlazeAuthentificationLayerPropsType<T> = {
 
 export type BlazeMiddleware = (res: unknown|null) => unknown|null;
 
-export function BlazeAuthentificationLayer<T>(
-  props: BlazeAuthentificationLayerPropsType<T>
+export function BlazeAuthentificationLayer(
+  props: BlazeAuthentificationLayerPropsType
 ) {
   const { protection, children, middlewares, Loading } = props;
   if(!protection){
@@ -24,9 +24,9 @@ export function BlazeAuthentificationLayer<T>(
   const navigate = useNavigate();
   const {setUserInformations, userInformations} = useAuthStore(_=>_);
   useEffect(()=>{
-    authenticate<T>().then((res)=>{
+    authenticate().then((res)=>{
         if(middlewares){
-            const valueAfterMiddleWares = recursiveArrayFunctionExec<T>(middlewares, res, 0);
+            const valueAfterMiddleWares = recursiveArrayFunctionExec(middlewares, res, 0);
             return valueAfterMiddleWares;
         }
         return res;
@@ -43,9 +43,9 @@ export function BlazeAuthentificationLayer<T>(
   return userInformations ? children : <Loading />;
 }
 
-function authenticate<T>() {
+function authenticate() {
   return blazeCentralConfiguration.blazeAuthProvider.authentificationProvider.whoami(
     blazeCentralConfiguration.blazeAuthProvider.authentificationPath
-  ).then(res=>res as T).catch(()=>null) ;
+  ).then(res=>res).catch(()=>null) ;
 }
 
