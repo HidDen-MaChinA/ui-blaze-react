@@ -2,7 +2,7 @@ import { SideBarLink } from "./SideBarLink";
 import type { SideBarType } from "./SideBarType";
 
 export const SideBar: SideBarType = (props) => {
-  const { LogoComponent, SideBarLinkComponent } = props;
+  const { LogoComponent, SideBarLinkComponent, sideBarLinksObjects } = props;
   return (
     <div className="h-[100vh]">
       <div className="w-[150px]"></div>
@@ -25,13 +25,26 @@ export const SideBar: SideBarType = (props) => {
           </div>
           <div className="flex flex-1 flex-col">
             <div className="bg-red-700 flex-1">
-              {SideBarLinkComponent ? (
-                <SideBarLinkComponent className="text-white">
-                  Analytics
-                </SideBarLinkComponent>
-              ) : (
-                <SideBarLink>something</SideBarLink>
-              )}
+              {sideBarLinksObjects &&
+                sideBarLinksObjects.map((sideBarLinkObject, i) =>
+                  SideBarLinkComponent ? (
+                    <SideBarLinkComponent
+                      key={`sidebar-link-object-${sideBarLinkObject.label}-${i}`}
+                      href={sideBarLinkObject.path}
+                      className="text-white"
+                    >
+                      {sideBarLinkObject.label}
+                    </SideBarLinkComponent>
+                  ) : (
+                    <SideBarLink
+                      key={`sidebar-link-object-${sideBarLinkObject.label}-${i}`}
+                      href={sideBarLinkObject.path}
+                      className="text-white"
+                    >
+                      {sideBarLinkObject.label}
+                    </SideBarLink>
+                  )
+                )}
             </div>
           </div>
           <div>profile</div>

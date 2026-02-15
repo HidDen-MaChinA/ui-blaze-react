@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useAuthStore } from "../stores/BlazeStores/authStore";
 import { recursiveArrayFunctionExec } from "./utils/recursiveArrayFunctionExec";
 import blazeCentralConfiguration from "../blazeCentralConfiguration";
@@ -23,7 +23,7 @@ export function BlazeAuthentificationLayer(
   }
   const navigate = useNavigate();
   const {setUserInformations, userInformations} = useAuthStore(_=>_);
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     authenticate().then((res)=>{
         if(middlewares){
             const valueAfterMiddleWares = recursiveArrayFunctionExec(middlewares, res, 0);

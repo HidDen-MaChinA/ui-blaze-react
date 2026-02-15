@@ -8,7 +8,11 @@ const blazeCentralConfiguration : TBlazeCentralConfiguration= {
     blazeLayout: {
         Sidebar: SideBar,
         SidebarLink: SideBarLink,
-        LogoComponent: Logo
+        LogoComponent: Logo,
+        sideBarLinksObjects: [
+            {label: "Forms", path: "/forms"},
+            {label: "Customers", path: "/customers"},
+        ]
     },
     // T type argument is the return type of whoami function that give type to all the middleware argument
     blazeAuthProvider: {

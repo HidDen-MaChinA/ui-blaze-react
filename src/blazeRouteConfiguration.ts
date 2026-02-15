@@ -5,38 +5,40 @@ import FormsPage from "./pages/FormsPage";
 import { LoginPage } from "./pages/LoginPage";
 import createObjectRoutes from "./BlazeRouter/utils/createObjectRoutes";
 import { ForbiddenPage } from "./forbidden_page";
-import { fakeUserAuthMiddleware } from "./middlewares/fakeUserAuthMiddleware";
-import { Valentine } from "./pages/Valentine";
+import { CustomersPage } from "./pages/CustomersPage";
 
 const BlazeObjectRoutes = createObjectRoutes([
-    // {
-    //     path: "/",
-    //     ComponentPage: LandingPage,
-    //     Layout: BlazeLayout
-    // },
-    // {
-    //     path: "/forms",
-    //     ComponentPage: FormsPage,
-    //     Layout: BlazeLayout,
-    //     protection: true,
-    //     middlewares: []
-    // },
-    // {
-    //     path: "/valentine",
-    //     ComponentPage: Valentine
-    // },
-    // {
-    //     path: "/login",
-    //     ComponentPage: LoginPage,
-    // },
+    {
+        path: "/",
+        ComponentPage: LandingPage,
+        Layout: BlazeLayout
+    },
+    {
+        path: "/forms",
+        ComponentPage: FormsPage,
+        Layout: BlazeLayout,
+        protection: true,
+        middlewares: []
+    },
+    {
+        path: "/customers",
+        ComponentPage: CustomersPage,
+        Layout: BlazeLayout,
+        protection: true,
+        middlewares: []
+    },
+    {
+        path: "/login",
+        ComponentPage: LoginPage,
+    },
     {
         path: "*",
-        ComponentPage: Valentine
+        ComponentPage: NotFound 
     },
-    // {
-    //     path: "/forbidden",
-    //     ComponentPage: ForbiddenPage
-    // }
+    {
+        path: "/forbidden",
+        ComponentPage: ForbiddenPage
+    }
 ])
 
 export default BlazeObjectRoutes

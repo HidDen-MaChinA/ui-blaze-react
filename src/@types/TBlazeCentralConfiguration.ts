@@ -7,5 +7,5 @@ export type TBlazeCentralConfiguration= {
     blazeLayout: TBlazeLayoutObjectConfiguration
     blazeForms?: TBlazeFormsConfiguration
     blazeAuthProvider: TBlazeAuthentificationConfiguration
-    blazeDefaultsMiddleware?: BlazeMiddleware<unknown>[]
+    blazeDefaultsMiddleware?: BlazeMiddleware[]
 }
