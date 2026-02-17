@@ -6,6 +6,7 @@ import { LoginPage } from "./pages/LoginPage";
 import createObjectRoutes from "./BlazeRouter/utils/createObjectRoutes";
 import { ForbiddenPage } from "./forbidden_page";
 import { CustomersPage } from "./pages/CustomersPage";
+import { TablesPage } from "./pages/TablesPage";
 
 const BlazeObjectRoutes = createObjectRoutes([
     {
@@ -38,7 +39,13 @@ const BlazeObjectRoutes = createObjectRoutes([
     {
         path: "/forbidden",
         ComponentPage: ForbiddenPage
-    }
+    },
+    {
+        path: "/tables",
+        Layout: BlazeLayout,
+        ComponentPage: TablesPage
+    },
+    
 ])
 
 export default BlazeObjectRoutes

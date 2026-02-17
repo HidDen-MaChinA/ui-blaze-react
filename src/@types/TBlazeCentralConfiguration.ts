@@ -2,10 +2,12 @@ import type { BlazeMiddleware } from "../BlazeAuthentification/BlazeAuthentifica
 import type { TBlazeAuthentificationConfiguration } from "./TBlazeAuthentificationConfiguration"
 import type { TBlazeFormsConfiguration } from "./TBlazeFormsConfiguration"
 import type { TBlazeLayoutObjectConfiguration } from "./TBlazeLayoutConfiguration"
+import type { TBlazeTablesConfiguration } from "./TBlazeTablesConfiguration"
 
 export type TBlazeCentralConfiguration= {
     blazeLayout: TBlazeLayoutObjectConfiguration
     blazeForms?: TBlazeFormsConfiguration
     blazeAuthProvider: TBlazeAuthentificationConfiguration
     blazeDefaultsMiddleware?: BlazeMiddleware[]
+    blazeTables?: TBlazeTablesConfiguration
 }
