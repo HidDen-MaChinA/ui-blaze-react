@@ -9,28 +9,32 @@ import { CustomerApiCallsHandler } from "../BlazeApiCalls/ApiCallsHandlers/Custo
 import H2 from "../components/Typography/H2";
 import type { CustomerSchema } from "../BlazeApiCalls/Schemas/CustomerSchema";
 import { Text } from "../components/Typography/Text";
-import { useBlazeFeedBackStore } from "../stores/BlazeStores/blazeFeedBackStore";
-import { BlazeFeedBack } from "../BlazeFeedBack/BlazeFeedBack";
+import { BlazeFeedBackMessageEnum, useBlazeFeedBackStore } from "../stores/BlazeStores/blazeFeedBackStore";
+import { BlazeFeedBackProvider } from "../BlazeFeedBack/BlazeFeedBackProvider";
+import { useBlazeFeedBack } from "../hooks/useBlazeFeedBack";
 
 export default function FormsPage(){
     const user = useAuthStore(_=>_.userInformations);
     const userApiCallsHandler = new UserApiCallsHandler("/api/users");
     const customerApiCalls = new CustomerApiCallsHandler("/api/customers");
     const [customers, setCustomers] = useState<CustomerSchema[]>([]);
-    const dispatchMessageToFeedBackMap = useBlazeFeedBackStore(_=>_.dispatchMessageToFeedBackMap)
+    const [feedBacks, dispatchFeedBack] = useBlazeFeedBack("forms")
     useEffect(()=>{
       customerApiCalls.get<CustomerSchema[]>("/getall").then((res)=>setCustomers(res))
     }, [])
     return (
       <div>
-        <BlazeFeedBack name="forms">
+        <BlazeFeedBackProvider name="forms">
          <div className="p-3">
           <BlazeBaseDynamicForm
             customButton={{
               Component: AppButton
             }}
             onSubmit={(data)=>{
-              dispatchMessageToFeedBackMap("forms", data.username)
+              dispatchFeedBack("forms", {
+                message: data.username, 
+                messageType: BlazeFeedBackMessageEnum.INFO
+              })
             }}
             formStructure={[
               { label: "username", type: DynamiqueInputType._text },
@@ -62,7 +66,7 @@ export default function FormsPage(){
           }
         </div>
           
-        </BlazeFeedBack>
+        </BlazeFeedBackProvider>
      </div>
     );
 }
