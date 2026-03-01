@@ -18,7 +18,7 @@ export function LandingPage() {
     const onChange = (e: ChangeEvent<HTMLInputElement>)=>{
         i18n.changeLanguage(e.target.value);
     }
-    const userApiCallHandler = useMemo(()=>new UserApiCallsHandler, [])
+    const userApiCallHandler = useMemo(()=>new UserApiCallsHandler("/create"), [])
     const apiCall = ()=>{
      userApiCallHandler.post({
       name: "",

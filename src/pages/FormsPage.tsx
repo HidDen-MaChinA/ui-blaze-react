@@ -9,24 +9,28 @@ import { CustomerApiCallsHandler } from "../BlazeApiCalls/ApiCallsHandlers/Custo
 import H2 from "../components/Typography/H2";
 import type { CustomerSchema } from "../BlazeApiCalls/Schemas/CustomerSchema";
 import { Text } from "../components/Typography/Text";
+import { useBlazeFeedBackStore } from "../stores/BlazeStores/blazeFeedBackStore";
+import { BlazeFeedBack } from "../BlazeFeedBack/BlazeFeedBack";
 
 export default function FormsPage(){
     const user = useAuthStore(_=>_.userInformations);
     const userApiCallsHandler = new UserApiCallsHandler("/api/users");
     const customerApiCalls = new CustomerApiCallsHandler("/api/customers");
     const [customers, setCustomers] = useState<CustomerSchema[]>([]);
+    const dispatchMessageToFeedBackMap = useBlazeFeedBackStore(_=>_.dispatchMessageToFeedBackMap)
     useEffect(()=>{
       customerApiCalls.get<CustomerSchema[]>("/getall").then((res)=>setCustomers(res))
     }, [])
     return (
       <div>
-        <div className="p-3">
+        <BlazeFeedBack name="forms">
+         <div className="p-3">
           <BlazeBaseDynamicForm
             customButton={{
               Component: AppButton
             }}
             onSubmit={(data)=>{
-              userApiCallsHandler.post({name: data.name, password: data.password, username: data.password}, "/create").then(console.log);
+              dispatchMessageToFeedBackMap("forms", data.username)
             }}
             formStructure={[
               { label: "username", type: DynamiqueInputType._text },
@@ -57,6 +61,8 @@ export default function FormsPage(){
             ))
           }
         </div>
-      </div>
+          
+        </BlazeFeedBack>
+     </div>
     );
 }
