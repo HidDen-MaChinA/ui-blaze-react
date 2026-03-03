@@ -12,20 +12,32 @@ export type BlazeFeedBackProviderPropsType = {
 export function BlazeFeedBackProvider (props: BlazeFeedBackProviderPropsType){
     const {name, children} = props;
     const {addFeedBackMap, feedBacksMessageMap} = useBlazeFeedBackStore(_=>_)
-    useLayoutEffect(()=>{
-    console.log(name)
+    useEffect(()=>{
         addFeedBackMap(name)
     }, [])
     useEffect(()=>{
+        console.log("something")
     }, [feedBacksMessageMap])
     return <BlazeFeedBack FeedBackInfoComponent={BlazeFeedBackInfo} name={name} feedBacksMessageMap={feedBacksMessageMap}>{children}</BlazeFeedBack>;
 }
 
 export const BlazeFeedBackInfo : BlazeFeedBackInfoType =  (props)=>{
     const {message, messageType} = props;
+    switch (messageType) {
+      case BlazeFeedBackMessageEnum.INFO:
+        return (
+          <div className="w-[100px] p-3 rounded-xl shadow-md">{message}</div>
+        );
+      case BlazeFeedBackMessageEnum.ERROR:
+      case BlazeFeedBackMessageEnum.SUCCESS:
+      case BlazeFeedBackMessageEnum.WARNING:
+    }
+}
+
+
+function FeedBackInfoTypeInfo(props: {message: string}){
+    const {message} = props;
     return (
-        <div className="p-3 rounded-xl shadow-md">
-            {message}
-        </div>
-    )
+      <div className="w-[100px] p-3 rounded-xl shadow-md">{message}</div>
+    );
 }

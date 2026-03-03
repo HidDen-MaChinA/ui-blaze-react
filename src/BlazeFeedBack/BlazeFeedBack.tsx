@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import type { BlazeFeedBackMessageType } from "../stores/BlazeStores/blazeFeedBackStore"
 import { BlazeFeedBackInfo } from "./BlazeFeedBackProvider"
-import type { BlazeFeedBackInfoPropsType, BlazeFeedBackInfoType } from "./BlazeFeedBackInfo"
+import type {  BlazeFeedBackInfoType } from "./BlazeFeedBackInfo"
 
 export type BlazeFeedBackPropsType = {
     feedBacksMessageMap?: Map<string, BlazeFeedBackMessageType[]>
@@ -18,7 +18,7 @@ export function BlazeFeedBack (props: BlazeFeedBackPropsType){
   }, [feedBacksMessageMap])
   return (
     <>
-      <div className="z-[-1] h-full absolute flex flex-end p-3">
+      <div className="h-full absolute flex flex-end p-3">
         <MapFeedBack FeedBackInfoComponent={FeedBackInfoComponent || BlazeFeedBackInfo} feedBacksMessages={messages} />
       </div>
       {children}
